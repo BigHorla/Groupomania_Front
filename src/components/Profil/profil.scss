@@ -1,0 +1,64 @@
+.profil{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding-right: 6px;
+    max-width: 1100px;
+    width: fit-content;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    @media screen and (max-width : 630px) {
+        flex-direction: column;
+        align-items: center;
+    }
+    &__info{
+        margin: 0 auto;        
+        text-align: justify;
+        height: 100%;
+        max-width: 700px;
+        @media screen and (max-width : 630px) {
+            padding: 10px;
+            width: 90%;
+        }
+        .bio{
+            padding: 10px;
+        }
+        h2{
+            margin: 10px;
+        }
+        h3{
+            margin: 10px;
+        }
+        h2{
+            @media screen and (max-width : 630px) {
+                text-align: center;
+            }
+        }
+
+    }
+}
+.contact{
+    margin-bottom: 20px;
+}
+ul{
+    padding: 0 10px;
+}
+li{
+    list-style-type: none;
+    padding: 0 10px;
+}
+
+.cardSmall{   
+    width: 100%;;
+}
+.thread{
+    margin: 10px auto;
+    width: fit-content;
+    border: 2px;
+    padding: 10px 0;
+    
+    h2{
+        padding: 20px 10px;
+    }
+}

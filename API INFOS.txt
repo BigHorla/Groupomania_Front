@@ -1,0 +1,11 @@
+API INFOS
+
+FONCTION		ROUTE						TYPE
+___________________________________________________
+
+Signup : 		/api/auth/signup 			[POST]
+---------------------------------------------------
+Login : 		/api/auth/login 			[POST]
+---------------------------------------------------
+All users : 	/api/auth/getusers 			[GET]
+

@@ -1,0 +1,22 @@
+.home{
+    display: flex;
+}
+aside{
+    width: 25vw;
+    min-width: fit-content;
+    @media screen and (max-width: 1000px) {
+        display: none;
+    }
+}
+.dashboard{
+    padding: 10px;
+    @media screen and (max-width: 1000px) {
+       margin: 0 auto;
+    }
+    h2{
+        text-align: center;
+        @media screen and (max-width: 350px) {
+            font-size: 16px;
+         }
+    }
+}

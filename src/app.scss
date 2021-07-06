@@ -1,0 +1,19 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Roboto", Helvetica, sans-serif;
+  background-image: repeating-radial-gradient(circle at center center, transparent 0px, transparent 13px,rgba(0,0,0, 0.1) 13px, rgba(0,0,0, 0.1) 24px,transparent 24px, transparent 62px,rgba(0,0,0, 0.1) 62px, rgba(0,0,0, 0.1) 96px),repeating-radial-gradient(circle at center center, rgb(241,241,241) 0px, rgb(241,241,241) 14px,rgb(241,241,241) 14px, rgb(241,241,241) 18px,rgb(241,241,241) 18px, rgb(241,241,241) 28px,rgb(241,241,241) 28px, rgb(241,241,241) 32px); background-size: 21px 21px;
+}
+
+//------------------------------------------------------
+

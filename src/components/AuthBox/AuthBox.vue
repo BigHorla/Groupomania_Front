@@ -96,7 +96,11 @@ export default {
         this.signinData.email != ""       
         ) {        
           axios.post("http://localhost:3000/api/auth/login", this.signinData)
-          .then(res => console.log(res.data))//TODO : save datas in LS
+          .then(res => {
+            console.log(res.data);
+            localStorage.setItem('userId', res.data.userId);
+            localStorage.setItem('token', res.data.token);
+          })
           .catch(err => console.log(err))
         } else {
         console.log("📝 Erreur dans le formulaire ! ⚠️");

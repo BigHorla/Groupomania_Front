@@ -18,6 +18,7 @@
 <script>
 
 import CardSmall from '../CardSmall/CardSmall.vue'
+import axios from "axios";
 
 export default {
   name: 'Team',
@@ -30,15 +31,16 @@ export default {
       CardSmall,
   },
   mounted : function() {
-        fetch("http://localhost:3000/api/auth/getusers")
-        .then((res) => res.json())
-        .then((res) => {this.users = res})
-        .then(() => { console.log(this.users);
-        }) 
-      }
+        let token = localStorage.getItem('token');
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}` 
+        let data = {
+            "userId" : localStorage.getItem('userId')
+        }
+        axios.get("http://localhost:3000/api/auth/getusers", data)
+        .then((res) => {this.users = res.data})
+        .then(() => console.log(this.users));
   }
-
-
+}
 
 
 

@@ -76,7 +76,7 @@
           :firstname="signupData.firstName"
           :lastname="signupData.lastName"
           :job="signupData.job"
-          :picture="signupData.profileImage"
+          :picture='"/img/default.jpg"'
         >
         </CardSmall>
         <div class="connect" @click="goToLogin">se connecter</div>

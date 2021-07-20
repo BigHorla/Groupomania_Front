@@ -1,5 +1,5 @@
 <template>
-  <div class="authbox">
+  <div @keyup.enter="signin" class="authbox">
     <div class="title">
       <h1>Se connecter</h1>
     </div>
@@ -67,9 +67,7 @@ export default {
   methods: {
     inputPassword: function (e) {
       if (e.target.value.match(passwordRegex)) {
-        console.log("mdp : ok !");
-        this.signinData.password = e.target.value;
-        console.log(`Password : ${this.signinData.password}`);
+        this.signinData.password = e.target.value;        
       } else {
         if (e.target.value.length < 8) {
           e.target.placeholder = "8 caractères minimum !";
@@ -101,6 +99,7 @@ export default {
             localStorage.setItem('userId', res.data.userId);
             localStorage.setItem('token', res.data.token);
           })
+          .then(() => window.location.reload())
           .catch(err => console.log(err))
         } else {
         console.log("📝 Erreur dans le formulaire ! ⚠️");

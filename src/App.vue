@@ -17,6 +17,7 @@
 
 <script>
 
+
 import Signup from "./components/Signup/Signup.vue";
 import AuthBox from "./components/AuthBox/AuthBox.vue";
 import NavBar from "./components/NavBar/NavBar.vue";
@@ -41,7 +42,8 @@ export default {
       userData: {
         userId: "",
         token: "",
-      },
+      }
+
     };
   },
   components: {

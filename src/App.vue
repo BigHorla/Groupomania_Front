@@ -11,7 +11,8 @@
     <!-- Spacing Component : just for add marge before following elements (also responsive) -->
     <Home v-if="home"></Home>
     <Team v-if="team"></Team>
-    <Profil v-if="profil"></Profil>
+    <Profil v-if="profil" @openModifyProfil="openModal"></Profil>
+    <EditProfil v-if="editProfil" @closeModifyProfil="closeModal"></EditProfil>
   </div>
 </template>
 
@@ -25,6 +26,7 @@ import SpacingComponent from "./components/SpacingComponent/SpacingComponent.vue
 import Home from "./components/Home/Home.vue";
 import Team from "./components/Team/Team.vue";
 import Profil from "./components/Profil/Profil.vue";
+import EditProfil from "./components/EditProfil/EditProfil.vue";
 /* import func from 'vue-editor-bridge'; */ //TODO : Remove that before production
 
 export default {
@@ -38,6 +40,7 @@ export default {
       home: false,
       profil: false,
       team: false,
+      editProfil: false,
       //Data :
       userData: {
         userId: "",
@@ -54,6 +57,7 @@ export default {
     Home,
     Team,
     Profil,
+    EditProfil
   },
   methods: {
     //To switch between section
@@ -92,6 +96,12 @@ export default {
       this.login = false;
       this.signup = true;
     },
+    closeModal: function () {
+      this.editProfil = false;
+    },
+    openModal: function () {
+      this.editProfil = true;
+    },
     authChecking: function () {
       this.userData.token = localStorage.getItem("token");
       this.userData.userId = localStorage.getItem("userId");
@@ -104,6 +114,7 @@ export default {
         this.home = true;
       }
     },
+
   },
   mounted: function () {
     this.userData.token = localStorage.getItem("token");

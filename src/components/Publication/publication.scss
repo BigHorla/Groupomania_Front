@@ -10,7 +10,7 @@
     
     h1{
         font-family: "Roboto", Helvetica, sans-serif;
-        margin-bottom: 15px;
+        
     }
     
     &__header{
@@ -30,6 +30,7 @@
             width: 100%;
             display: flex;
             justify-content: space-between;
+            margin-bottom: 15px;
             .delete{
                 width: 20px;
                 height: 20px;

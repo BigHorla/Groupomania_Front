@@ -2,7 +2,7 @@
     <nav class="nav">
         <div class="nav__eles">
 
-            <a class="nav__eles__logo" @click="loadPage('home')">
+            <a class="nav__eles__logo" @click="refresh()">
                 <img src="../../assets/logo/icon-ibft.png" class="fade" alt="">
                 <h1 class="fade">Groupomania</h1>
             </a>
@@ -22,6 +22,9 @@ export default {
       loadPage: function(page){
           this.$emit('pageRequired', page);
       },
+      refresh: function(){
+          window.location.reload()
+      }
   }
 }
 

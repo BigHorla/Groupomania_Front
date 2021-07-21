@@ -1,0 +1,116 @@
+.modalBox{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.5);
+    .formBox{
+        width: 700px;
+        background: white;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        padding: 8px;
+        border-radius: 8px;
+        font-family: "Roboto", Helvetica, sans-serif;
+        &__header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: fit-content;
+            .imgContainer{
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                overflow: hidden;
+                position: relative;
+                transition-duration: .3s;
+                &:hover{
+                    cursor: pointer;  
+                    & > .profilPic {
+                        opacity: 30%;
+                    }                
+                    & > .edit {
+                        opacity: 100%;
+                    }                
+                }
+                .profilPic{
+                    width: 100%;
+                    transition-duration: .3s;
+                }
+                .edit{
+                    position:absolute ;
+                    height: 40%;
+                    width: 40%;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                    opacity: 0%;
+                    transition-duration: .3s;
+                }
+            }
+        }
+    }
+}
+.infos{
+    .names{
+        display: flex;
+    }
+}
+input, textarea{
+    width: 100%;
+    outline: none;
+    border: none;
+    background: #F1F1F1;
+    font-size: 20px;
+    margin: 4px;
+    border-radius: 4px;
+    padding: 4px;
+    transition-duration: .3s;
+    &:hover{
+        cursor: pointer;
+        background: #d6d6d6;
+    }
+}
+textarea{
+    resize: none;
+    overflow: auto;
+}
+.names{
+    input{
+        width: 150px;
+    }
+}
+.job{
+    input{
+
+        width: 310px;
+    }
+}
+.btns{
+    display: flex;
+}
+.btn{
+    background: white;
+    padding: 10px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;    
+    margin-top: 20px;
+    &:hover{
+        cursor: pointer;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 5px 8px -3px inset,
+         rgba(0, 0, 0, 0.3) 0px 6px 8px -6px inset;
+    }
+}
+input[type=file]{
+    height: 0;
+    width: 0;
+    opacity: 0;
+}

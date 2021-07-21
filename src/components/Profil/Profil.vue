@@ -8,7 +8,11 @@
             :picture=user.profileImage></CardSmall>
         <div class="profil__info">
             <div>
-                <h2>À propos de {{this.user.firstName}}</h2>
+                <div class="profil__info__header">
+                    <h2>À propos de {{this.user.firstName}}</h2>
+                    <div @click="modifyProfil" class="edit"><img src="/img/edit.png" alt=""></div>
+                </div>
+                
                 <div class="bio">{{this.user.bio}}</div>
             </div>
             <div class="contact">
@@ -64,6 +68,11 @@ export default {
         axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("token")}`;
       axios.get("http://localhost:3000/api/article/byAuthor/"+localStorage.getItem('userId'))
       .then((res) => {this.articles = res.data});
+  },
+  methods : {
+      modifyProfil : function () {
+          this.$emit("openModifyProfil")
+      }
   }
 }
 </script>

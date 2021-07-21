@@ -20,6 +20,27 @@
             padding: 10px;
             width: 90%;
         }
+        &__header{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .edit{
+                display: flex;
+                margin-right: 8px;
+                align-items: center;
+                height: fit-content;
+                transition-duration: 0.3s;
+                &:hover{
+                    transform: scale(1.2) rotate(6deg);
+                    cursor: pointer;
+                }
+                
+                img{
+                    width: 20px;
+                }
+            }
+        }
         .bio{
             padding: 10px;
             text-align: justify;

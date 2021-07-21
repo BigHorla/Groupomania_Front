@@ -13,7 +13,7 @@
     <div class="btns">
         <div class="btn btn--left" @click="post">Publier</div>
         <label for="file" class="btn btn--right">
-            <div >Image</div>
+            <div >Image <span v-if=file>✔️</span></div>
         </label>
     </div>
 
@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     post: function() {
-        if(axios){ let i; console.log(i)}
+        
         let formData = new FormData();
         formData.append('image', this.file);
         formData.append('UserId', localStorage.getItem('userId'));

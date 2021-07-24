@@ -3,32 +3,38 @@
 <template>
   <div id="app">
     <!-- If user isn't login -->
-    <Signup v-if="signup" @goToLogin="loginBox"></Signup>
-    <AuthBox v-if="login" @goToSignup="signupBox"></AuthBox>
+    <Signup v-if="signup" @goToLogin="loginBox()"></Signup>
+    <AuthBox v-if="login" @goToSignup="signupBox()"></AuthBox>
+
     <!-- If user is login -->
     <NavBar v-if="auth" @pageRequired="goTo($event)"></NavBar>
     <SpacingComponent v-if="auth"></SpacingComponent>
     <!-- Spacing Component : just for add marge before following elements (also responsive) -->
+
     <Home v-if="home"></Home>
     <Team v-if="team"></Team>
-    <Profil v-if="profil" @openModifyProfil="openModal"></Profil>
-    <EditProfil v-if="editProfil" @closeModifyProfil="closeModal"></EditProfil>
+    <Profil v-if="profil" :who="seeProfil"></Profil>
+    <EditProfil v-if="editProfil"></EditProfil>
   </div>
 </template>
 
+
+
 <script>
+//import utilities
+import { bus } from "./main";
 
-
-import Signup from "./components/Signup/Signup.vue";
-import AuthBox from "./components/AuthBox/AuthBox.vue";
-import NavBar from "./components/NavBar/NavBar.vue";
-import SpacingComponent from "./components/SpacingComponent/SpacingComponent.vue";
+//import components
 import Home from "./components/Home/Home.vue";
 import Team from "./components/Team/Team.vue";
+import Signup from "./components/Signup/Signup.vue";
+import NavBar from "./components/NavBar/NavBar.vue";
 import Profil from "./components/Profil/Profil.vue";
+import AuthBox from "./components/AuthBox/AuthBox.vue";
 import EditProfil from "./components/EditProfil/EditProfil.vue";
-/* import func from 'vue-editor-bridge'; */ //TODO : Remove that before production
+import SpacingComponent from "./components/SpacingComponent/SpacingComponent.vue";
 
+//App properties :
 export default {
   name: "App",
   data() {
@@ -41,12 +47,11 @@ export default {
       profil: false,
       team: false,
       editProfil: false,
-      //Data :
+      seeProfil: "",
       userData: {
         userId: "",
         token: "",
-      }
-
+      },
     };
   },
   components: {
@@ -57,7 +62,23 @@ export default {
     Home,
     Team,
     Profil,
-    EditProfil
+    EditProfil,
+  },
+  created() {
+    bus.$on("seeProfilOf", (data) => {
+      this.seeProfil = data;
+      this.goTo("profil");
+    });
+    bus.$on("seeMyProfil", () => {
+      this.seeProfil = localStorage.getItem('userId');
+      this.goTo("profil");
+    });
+    bus.$on("openModifyProfil", () => {
+      this.editProfil = true;
+    });
+    bus.$on("closeModifyProfil", () => {
+      this.editProfil = false;
+    });
   },
   methods: {
     //To switch between section
@@ -105,7 +126,6 @@ export default {
     authChecking: function () {
       this.userData.token = localStorage.getItem("token");
       this.userData.userId = localStorage.getItem("userId");
-      console.log(this.userData);
 
       if (this.userData.token === null) {
         this.login = true;
@@ -114,12 +134,10 @@ export default {
         this.home = true;
       }
     },
-
   },
   mounted: function () {
     this.userData.token = localStorage.getItem("token");
     this.userData.userId = localStorage.getItem("userId");
-    console.log(this.userData);
 
     if (this.userData.token === null) {
       this.login = true;
@@ -131,5 +149,4 @@ export default {
 };
 </script>
 
-<style src="./app.scss" lang="scss">
-</style>
+<style src="./app.scss" lang="scss"></style>

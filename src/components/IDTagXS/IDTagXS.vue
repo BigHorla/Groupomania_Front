@@ -6,10 +6,8 @@
 
     <div class="IDtag__infos">
       <div class="IDtag__infos__names">
-        {{ this.user.firstName
-        }}<span class="completeName"> {{ this.user.lastName }}</span>
+        {{ this.user.firstName}}<span class="completeName">{{ this.user.lastName }}</span>
       </div>
-      <div class="IDtag__infos__job">{{ this.user.job }}</div>
     </div>
   </div>
 </template>
@@ -21,7 +19,7 @@ import { bus } from "../../main";
 
 //Component properties :
 export default {
-  name: "IDTag",
+  name: "IDTagXS",
   data() {
     return {
       user: {},
@@ -39,7 +37,9 @@ export default {
     //Requesting
     axios
       .get("http://localhost:3000/api/auth/getUserByID/" + this.id)
-      .then((res) => (this.user = res.data));
+      .then((res) => {
+        this.user = res.data;
+      });
   },
   methods: {
     seeProfil: function () {
@@ -49,4 +49,4 @@ export default {
 };
 </script>
 
-<style scoped src="./idtag.scss" lang='scss'></style>
+<style scoped src="./idtagXS.scss" lang='scss'></style>

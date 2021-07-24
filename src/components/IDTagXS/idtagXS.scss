@@ -1,8 +1,9 @@
 .IDtag {
+  background: white;
   text-decoration: none;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   border-radius: 40px;
-  height: 50px;
+  height: 25px;
   display: flex;
   width: fit-content;
   overflow: hidden;
@@ -13,8 +14,8 @@
     cursor: pointer;
   }
   &__picture {
-    width: 52px;
-    height: 52px;
+    width: 27px;
+    height: 27px;
     border-radius: 50%;
     overflow: hidden;
     position: relative;
@@ -34,13 +35,9 @@
     margin: 0 20px 0 5px;
     color: black;
     &__names {
-      font-size: 18px;
+      font-size: 14px;
       margin: 0 0 1px;
       font-weight: bold;
-    }
-    &__job {
-      margin: 0;
-      font-size: 13px;
     }
   }
 }

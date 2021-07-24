@@ -60,9 +60,14 @@
         align-items: center;
         padding-top: 12px;
     }
-    .comment{
+    .comment, .postComent{
         width: 20px;
         height: 20px;
+        transition-duration: .3s;
+        &:hover{
+            cursor: pointer;
+            transform: scale(1.1) rotate(12deg);
+        }
         img{
             width: 100%;
         }

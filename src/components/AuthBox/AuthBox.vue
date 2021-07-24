@@ -7,6 +7,7 @@
     <form>
       <div>
         <label for="email">Email : </label>
+
         <input
           @change="inputEmail"
           type="text"
@@ -15,8 +16,10 @@
           placeholder="Votre email d'entreprise"
         />
       </div>
+
       <div>
         <label for="password">Mot de passe : </label>
+
         <input
           @change="inputPassword"
           type="password"
@@ -25,41 +28,36 @@
           placeholder="Choisissez un mot de passe"
         />
       </div>
+
       <div @click="signin" class="btn">Connexion</div>
+
       <div class="inscription" @click="goToSignup">s'inscrire</div>
     </form>
   </div>
 </template>
 
-<script>
 
+
+<script>
+//import utilities
 import axios from "axios";
 
+//define regex
 const passwordRegex = new RegExp(
   /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,120})$/
 );
 const emailRegex = new RegExp(
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 );
-//TODO : reprendre les fonctions de vérification pour l'inscription et nettoyer ce code
-/* 
-Validation du mot de passe
-Règles:
-- entre 8 et 120 signes
-- pas d'espace
-- au minimum une lettre minuscule
-- au minimum une lettre majuscule
-- au minimum un chiffre
-- au minimum un des symboles suivant $ @ % * + - _ ! 
-*/
 
+//Component properties :
 export default {
   name: "AuthBox",
   data() {
     return {
       signinData: {
-        'password': "",
-        'email': "",
+        password: "",
+        email: "",
       },
       confirm: "",
     };
@@ -67,16 +65,10 @@ export default {
   methods: {
     inputPassword: function (e) {
       if (e.target.value.match(passwordRegex)) {
-        this.signinData.password = e.target.value;        
+        this.signinData.password = e.target.value;
       } else {
-        if (e.target.value.length < 8) {
-          e.target.placeholder = "8 caractères minimum !";
-          e.target.value = "";
-        } else {
-          e.target.placeholder =
-            "Pas d'espace, majuscule, miniscule, chiffre, symbole :$ @ % * + - _ !";
-          e.target.value = "";
-        }
+        e.target.placeholder = "Erreur de mot de passe";
+        e.target.value = "";
       }
     },
     inputEmail: function (e) {
@@ -89,28 +81,26 @@ export default {
       }
     },
     signin: function () {
-      if (
-        this.signinData.password != "" &&
-        this.signinData.email != ""       
-        ) {        
-          axios.post("http://localhost:3000/api/auth/login", this.signinData)
-          .then(res => {
+      if (this.signinData.password != "" && this.signinData.email != "") {
+        //Requesting
+        axios
+          .post("http://localhost:3000/api/auth/login", this.signinData)
+          .then((res) => {
             console.log(res.data);
-            localStorage.setItem('userId', res.data.userId);
-            localStorage.setItem('token', res.data.token);
+            localStorage.setItem("userId", res.data.userId);
+            localStorage.setItem("token", res.data.token);
           })
           .then(() => window.location.reload())
-          .catch(err => console.log(err))
-        } else {
+          .catch((err) => console.log(err));
+      } else {
         console.log("📝 Erreur dans le formulaire ! ⚠️");
       }
     },
-    goToSignup: function(){
-      this.$emit('goToSignup');
-    }
+    goToSignup: function () {
+      this.$emit("goToSignup");
+    },
   },
 };
 </script>
 
-<style scoped src="./authbox.scss" lang='scss'>
-</style>
+<style scoped src="./authbox.scss" lang='scss'></style>

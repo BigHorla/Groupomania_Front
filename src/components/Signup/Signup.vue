@@ -85,27 +85,31 @@
   </div>
 </template>
 
+
+
 <script>
-import CardSmall from "../CardSmall/CardSmall.vue";
+//import utilities
 import axios from "axios";
 
-/* 
-Rules for password :
-Between 8 and 120 char, 
-no space, 
-minumum an uppercase, a lowercase, a number 
-and one of the following symbols: $ @ % * + - _ ! 
-*/
+//import components
+import CardSmall from "../CardSmall/CardSmall.vue";
 
+//define regex 
+/* Rules for password :
+  Between 8 and 120 char, 
+  no space, 
+  minumum an uppercase, a lowercase, a number 
+  and one of the following symbols: $ @ % * + - _ !                         */
+  
 const passwordRegex = new RegExp(
   /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,120})$/
 );
 
-//Mail checking rule
 const emailRegex = new RegExp(
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 );
 
+//Component properties :
 export default {
   name: "Signup",
   data() {
@@ -143,7 +147,6 @@ export default {
     },
     inputPassword: function (e) {
       if (e.target.value.match(passwordRegex)) {
-        //console.log("Mot de passe valide ✔️");
         this.signupData.password = e.target.value;
       } else {
         if (e.target.value.length < 8) {
@@ -169,9 +172,9 @@ export default {
         this.signupData.email != "" &&
         this.signupData.password === this.confirm
       ) {
+        //Requesting
         axios
           .post("http://localhost:3000/api/auth/signup", this.signupData)
-          .then(console.log("💾 Utilisateur enregistré ✔️"))
           .then(() => {
             this.goToLogin();
             alert("Votre compte a été créé, veuillez vous connecter.");
@@ -188,5 +191,4 @@ export default {
 };
 </script>
 
-<style scoped src="./signup.scss" lang='scss'>
-</style>
+<style scoped src="./signup.scss" lang='scss'></style>

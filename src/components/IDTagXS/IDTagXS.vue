@@ -6,7 +6,7 @@
 
     <div class="IDtag__infos">
       <div class="IDtag__infos__names">
-        {{ this.user.firstName}}<span class="completeName">{{ this.user.lastName }}</span>
+        {{ this.user.firstName}}<span class="completeName"> {{ this.user.lastName }}</span>
       </div>
     </div>
   </div>

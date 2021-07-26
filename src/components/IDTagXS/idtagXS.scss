@@ -10,6 +10,9 @@
   position: relative;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    @media screen and (max-width: 520px) {
+      height: 40px;
+  }
   &:hover{
     cursor: pointer;
   }
@@ -21,6 +24,10 @@
     position: relative;
     left: -1px;
     top: -1px;
+    @media screen and (max-width: 520px) {
+      width: 42px;
+      height: 42px;
+  }
     img {
       object-position: center;
       object-fit: cover;
@@ -38,6 +45,9 @@
       font-size: 14px;
       margin: 0 0 1px;
       font-weight: bold;
+      @media screen and (max-width: 520px) {
+        font-size: 24px;
+    }
     }
   }
 }

@@ -2,7 +2,7 @@
   <div class="card" v-if="visible">
     <article>
       <div class="card__header">
-        <IDTag :userID="who"></IDTag>
+        <IDTag class="author" :userID="who"></IDTag>
 
         <div class="card__timestamp">
           Publié le {{ date.split("000Z")[0].split("T")[0] }} à

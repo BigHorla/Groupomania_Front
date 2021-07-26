@@ -11,7 +11,7 @@
       
       <div class="dashboard">
         <sendbox></sendbox>
-          <Publication v-for="article in articles" :key="article" 
+          <Publication v-for="article in articles" :key="article.id" 
               :author=article.AuthorId
               :content=article.content
               :date=article.createdAt

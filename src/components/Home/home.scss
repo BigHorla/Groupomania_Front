@@ -2,13 +2,15 @@
     display: flex;
 }
 aside{
+    position: fixed;
     width: 25vw;
     min-width: fit-content;
-    @media screen and (max-width: 1000px) {
+    @media screen and (max-width: 1320px) {
         display: none;
     }
 }
 .dashboard{
+    margin: 0 auto;
     padding: 10px;
     @media screen and (max-width: 1000px) {
        margin: 0 auto;

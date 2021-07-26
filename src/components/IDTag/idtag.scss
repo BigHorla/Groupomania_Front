@@ -37,10 +37,20 @@
       font-size: 18px;
       margin: 0 0 1px;
       font-weight: bold;
+      @media screen and (max-width: 520px) {
+        font-size: 24px;
+    }
+    @media screen and (max-width: 350px) {
+      font-size: 34px;
+  }
+      
     }
     &__job {
       margin: 0;
       font-size: 13px;
+      @media screen and (max-width: 520px) {
+        display : none;
+    }
     }
   }
 }

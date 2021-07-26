@@ -15,6 +15,7 @@
         <div>
           <div class="profil__info__header">
             <h2>À propos de {{ this.user.firstName }}</h2>
+            
             <div v-if="edit" @click="modifyProfil" class="edit">
               <img src="/img/edit.png" alt="" />
             </div>
@@ -36,7 +37,7 @@
     <div class="thread">
       <Publication
         v-for="article in articles"
-        :key="article"
+        :key="article.id"
         :author="article.AuthorId"
         :content="article.content"
         :date="article.createdAt"

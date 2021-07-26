@@ -26,34 +26,42 @@
             justify-content: space-between;
             align-items: center;
             .edit{
+                width: 20px;
                 display: flex;
                 margin-right: 8px;
                 align-items: center;
                 height: fit-content;
                 transition-duration: 0.3s;
+                @media screen and (max-width : 630px) {
+                    width: 30px;  
+                }
                 &:hover{
                     transform: scale(1.2) rotate(6deg);
                     cursor: pointer;
                 }
                 
                 img{
-                    width: 20px;
+                    width: 100%;
                 }
             }
         }
         .bio{
             padding: 10px;
             text-align: justify;
+            @media screen and (max-width : 630px) {
+                font-size: 28px;   
+            }
         }
         h2{
             margin: 10px;
+            @media screen and (max-width : 630px) {
+                font-size: 40px;   
+            }
         }
         h3{
             margin: 10px;
-        }
-        h2{
             @media screen and (max-width : 630px) {
-                text-align: center;
+                font-size: 30px;
             }
         }
 
@@ -61,6 +69,9 @@
 }
 .contact{
     margin-bottom: 20px;
+    @media screen and (max-width : 630px) {
+        font-size: 28px;   
+    }
 }
 ul{
     padding: 0 10px;
@@ -71,7 +82,7 @@ li{
 }
 
 .cardSmall{   
-    width: 100%;;
+    width: 100%;
 }
 .thread{
     margin: 10px auto;

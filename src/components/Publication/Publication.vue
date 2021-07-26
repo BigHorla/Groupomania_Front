@@ -77,6 +77,7 @@
 <script>
 //import utilities
 import axios from "axios";
+const jwt = require('jsonwebtoken');
 
 //import components
 import IDTag from "../IDTag/IDTag.vue";
@@ -146,8 +147,12 @@ export default {
     },
   },
   mounted: function () {
-    if(this.who == localStorage.getItem("userId")){
+    let token = localStorage.getItem("token");
+    let decoded = jwt.decode(token);
+    let role = decoded.userRole;
+    if(this.who == localStorage.getItem("userId") || role === "admin" ){
       this.itsmine = true;
+      
     }
     //Requesting
     axios

@@ -65,12 +65,18 @@ export default {
       lastname = this.removeAccent(lastname.toLowerCase());
       job = this.removeAccent(job.toLowerCase());
       if(this.input === ""){
+        if(firstname === "admin"){
+          return false
+        }
         return true
       }else{
         let completeName = firstname+" "+lastname;
         let reverseCompleteName = lastname+" "+firstname;
         let initials = firstname[0]+lastname[0];
         let reverseInitials = lastname[0]+firstname[0];
+        if(firstname === "admin"){
+          return false
+        }
 
         if(
           firstname.indexOf(this.input) != -1 

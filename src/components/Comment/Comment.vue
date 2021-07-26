@@ -14,11 +14,17 @@
     </div>
 </template>
 
+
+
 <script>
-
-import IDTagXS from "../IDTagXS/IDTagXS.vue";
+//import utilities
 import axios from "axios";
+const jwt = require('jsonwebtoken')
 
+//import components
+import IDTagXS from "../IDTagXS/IDTagXS.vue";
+
+//Component properties :
 export default {
     name: 'Comment',
     data() {
@@ -44,7 +50,10 @@ export default {
         }
     },
     mounted: function () {
-        if(this.author == localStorage.getItem('userId')){
+        let token = localStorage.getItem("token");
+        let decoded = jwt.decode(token);
+        let role = decoded.userRole;
+        if(this.author == localStorage.getItem('userId') || role === "admin"){
             this.itsMine = true;
         }
     }

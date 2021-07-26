@@ -15,8 +15,8 @@
         <div>
           <div class="profil__info__header">
             <h2>À propos de {{ this.user.firstName }}</h2>
-            
-            <div v-if="edit" @click="modifyProfil" class="edit">
+            <div v-if=showAdmin class="admin"><img @click="modifyAdmin()" :src=adminLogo alt="crown"></div>
+            <div v-if="edit" @click="modifyProfil()" class="edit">
               <img src="/img/edit.png" alt="" />
             </div>
           </div>
@@ -30,6 +30,7 @@
           <ul>
             <li>📧 {{ this.user.email }}</li>
           </ul>
+          
         </div>
       </div>
     </div>
@@ -56,6 +57,7 @@
 //import utilities
 import axios from "axios";
 import { bus } from "../../main";
+const jwt = require('jsonwebtoken')
 
 //import components
 import CardSmall from "../CardSmall/CardSmall.vue";
@@ -70,6 +72,9 @@ export default {
       img: "/img/default.jpg",
       articles: {},
       edit: false,
+      showAdmin : false,
+      admin : false,
+      adminLogo : "/img/crownEmpty.png"
     };
   },
   props: ["who"],
@@ -89,9 +94,16 @@ export default {
       this.getInfo(localStorage.getItem("userId"));
     });
 
+    let token = localStorage.getItem("token");
+    let decoded = jwt.decode(token);
+    let role = decoded.userRole;
+    if(role === "admin" ){
+      this.showAdmin = true;      
+    }
     localStorage.getItem("userId") == this.who
       ? (this.edit = true)
       : (this.edit = false);
+
 
     //Get user informations
     this.getInfo(this.who);
@@ -100,6 +112,18 @@ export default {
     modifyProfil: function () {
       bus.$emit("openModifyProfil");
       console.log("Ouverture de la fenetre");
+    },
+    modifyAdmin: function () {
+      if(this.admin){
+        this.admin = !this.admin;
+        axios.put("http://localhost:3000/api/auth/admin/"+this.who)
+        .then(() => this.adminLogo = "/img/crownEmpty.png")
+        
+      }else{
+        this.admin = !this.admin
+        axios.put("http://localhost:3000/api/auth/admin/"+this.who)
+        .then(() => this.adminLogo = "/img/crown.png")
+      }
     },
     getInfo: function (user) {
       //Get Token for API
@@ -113,6 +137,10 @@ export default {
         .get("http://localhost:3000/api/auth/getUserByID/" + user)
         .then((res) => {
           this.user = res.data;
+          if (this.user.roles === "admin"){
+                  this.admin = true;
+                  this.adminLogo = "/img/crown.png"
+          }
           if (this.id == localStorage.getItem("userId")) {
             //is it user own profil ?
             this.edit = true; //If yes, profil can be modify

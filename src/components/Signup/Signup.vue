@@ -73,6 +73,7 @@
       </form>
       <aside>
         <CardSmall
+          class="preview"
           :firstname="signupData.firstName"
           :lastname="signupData.lastName"
           :job="signupData.job"

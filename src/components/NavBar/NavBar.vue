@@ -9,6 +9,9 @@
       <div class="nav__eles__links">
         <a class="slide d2" @click="loadPage('team')">Mes collègues</a>
         <a class="slide d1" @click="seeMyProfil(userId)">Mon profil</a>
+        <div class="logout" @click="logout()">
+          <img src="/img/logout.png" alt="">
+        </div>
       </div>
     </div>
   </nav>
@@ -38,6 +41,11 @@ export default {
     seeMyProfil: function () {
       bus.$emit("seeMyProfil");
     },
+    logout: function () {
+      localStorage.removeItem('userId');
+      localStorage.removeItem('token');
+      window.location.reload()
+    }
   },
   mounted: function () {
     this.userId = localStorage.getItem("userId");

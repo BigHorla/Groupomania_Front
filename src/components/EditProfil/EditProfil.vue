@@ -19,7 +19,7 @@
           id="file"
           name="image"
           ref="file"
-          @change="handleFileUpload()"
+          @change="handleFileUpload($event)"
           class="file"
           accept="image/png, image/jpeg, image/gif"
         />
@@ -95,15 +95,14 @@ export default {
       .then((res) => {
         this.user = res.data;
       })
-      .then(() => console.log(this.user));
   },
   methods: {
     closeModal: function () {
       bus.$emit("closeModifyProfil");
-      console.log("Fermeture de la fenetre");
     },
-    handleFileUpload() {
+    handleFileUpload() {      
       this.file = this.$refs.file.files[0];
+      this.user.profileImage = window.URL.createObjectURL(this.file);
     },
     post: function () {
 
@@ -115,7 +114,6 @@ export default {
         //Requesting
         axios
           .put("http://localhost:3000/api/auth/picture/" + localStorage.getItem("userId"), formData)
-          .then((res) => {console.log(res.data);});
       }
 
       //Look for empty fields

@@ -8,6 +8,11 @@
     background-image: repeating-linear-gradient(135deg, hsla(35,0%,71%,0.09) 0px, hsla(35,0%,71%,0.09) 1px,transparent 1px, transparent 11px),repeating-linear-gradient(45deg, hsla(35,0%,71%,0.09) 0px, hsla(35,0%,71%,0.09) 1px,transparent 1px, transparent 11px),linear-gradient(90deg, hsl(183,0%,100%),hsl(183,0%,100%));
     padding-bottom: 1px;
     width: fit-content;
+    @media screen and (max-width : 520px){
+        width: 100%;
+        position: inherit;
+        transform: translate(0,0);
+        }
 
     .title{
         padding: 10px;       
@@ -18,17 +23,32 @@
     }
 }
 aside{
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    .preview{
+        @media screen and (max-width : 830px){
+        display: none;
+        }
+    }
+    
 }
 .container{
     
     display: flex;
     justify-content: space-between;
+    @media screen and (max-width : 830px){
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
     
     form{
         width: 500px;
+        @media screen and (max-width : 500px){
+            width: 100%;
+            }
         
     }
 }

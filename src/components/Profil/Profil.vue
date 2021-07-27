@@ -15,9 +15,11 @@
         <div>
           <div class="profil__info__header">
             <h2>À propos de {{ this.user.firstName }}</h2>
-            <div v-if=showAdmin class="admin"><img @click="modifyAdmin()" :src=adminLogo alt="crown"></div>
-            <div v-if="edit" @click="modifyProfil()" class="edit">
-              <img src="/img/edit.png" alt="" />
+            <div class="profil-btns">
+              <div v-if=showAdmin class="admin"><img @click="modifyAdmin()" :src=adminLogo alt="crown"></div>
+              <div v-if="edit" @click="modifyProfil()" class="edit">
+                <img src="/img/edit.png" alt="" />
+              </div>
             </div>
           </div>
 
@@ -74,7 +76,8 @@ export default {
       edit: false,
       showAdmin : false,
       admin : false,
-      adminLogo : "/img/crownEmpty.png"
+      adminLogo : "/img/crownEmpty.png",
+      userId : this.who
     };
   },
   props: ["who"],
@@ -85,44 +88,63 @@ export default {
   mounted: function () {
     //look for 'profil event'
     bus.$on("seeProfilOf", (data) => {
-      this.who = data;
-      this.getInfo(this.who);
-      console.log(this.who);
+      this.userId = data;
+      this.getInfo(this.userId);
     });
     bus.$on("seeMyProfil", () => {
-      this.who = localStorage.getItem("userId");
-      this.getInfo(localStorage.getItem("userId"));
+      this.userId = localStorage.getItem("userId");
+      this.getInfo(this.userId);
     });
 
     let token = localStorage.getItem("token");
     let decoded = jwt.decode(token);
     let role = decoded.userRole;
-    if(role === "admin" ){
-      this.showAdmin = true;      
+
+    if(role === "admin"){     
+      this.showAdmin = true;        
     }
-    localStorage.getItem("userId") == this.who
-      ? (this.edit = true)
-      : (this.edit = false);
 
-
+    this.canIEdit();
+    
     //Get user informations
-    this.getInfo(this.who);
+    this.getInfo(this.userId);
   },
   methods: {
     modifyProfil: function () {
       bus.$emit("openModifyProfil");
       console.log("Ouverture de la fenetre");
     },
+    canIEdit: function () {
+      let token = localStorage.getItem("token");
+      let decoded = jwt.decode(token);
+      let role = decoded.userRole;
+
+
+      localStorage.getItem("userId") == this.userId || role == "admin"
+      ? (this.edit = true)
+      : (this.edit = false);
+
+
+
+
+    },
     modifyAdmin: function () {
       if(this.admin){
-        this.admin = !this.admin;
-        axios.put("http://localhost:3000/api/auth/admin/"+this.who)
-        .then(() => this.adminLogo = "/img/crownEmpty.png")
-        
+        if(this.userId == 1){
+          alert("Impossible de retirer les droits d'administration du compte administrateur !")
+        }else{
+          if(confirm("Retirer les droits d'administration ?")){
+            this.admin = !this.admin;
+            axios.put("http://localhost:3000/api/auth/admin/"+this.userId)
+            .then(() => this.adminLogo = "/img/crownEmpty.png")
+          }
+        }      
       }else{
-        this.admin = !this.admin
-        axios.put("http://localhost:3000/api/auth/admin/"+this.who)
-        .then(() => this.adminLogo = "/img/crown.png")
+        if(confirm("Donner les droits d'administration ?")){
+          this.admin = !this.admin
+          axios.put("http://localhost:3000/api/auth/admin/"+this.userId)
+          .then(() => this.adminLogo = "/img/crown.png")
+        }
       }
     },
     getInfo: function (user) {
@@ -140,11 +162,8 @@ export default {
           if (this.user.roles === "admin"){
                   this.admin = true;
                   this.adminLogo = "/img/crown.png"
-          }
-          if (this.id == localStorage.getItem("userId")) {
-            //is it user own profil ?
-            this.edit = true; //If yes, profil can be modify
-          }
+          }     
+            this.canIEdit() 
         })
         .then(() => {
           //Get user's articles

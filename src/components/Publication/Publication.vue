@@ -60,7 +60,7 @@
         <Comment
           @Updateby="updateComment($event)"
           v-for="comment in comments"
-          :key="comment"
+          :key="comment.id"
           :content="comment.content"
           :author="comment.AuthorId"
           :id="comment.id"

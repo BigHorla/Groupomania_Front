@@ -25,6 +25,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            .profil-btns{
+                display: flex;
+                align-items: center;
+            }
             .edit{
                 width: 20px;
                 display: flex;

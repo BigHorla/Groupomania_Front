@@ -14,7 +14,7 @@
     <Home v-if="home"></Home>
     <Team v-if="team"></Team>
     <Profil v-if="profil" :who="seeProfil"></Profil>
-    <EditProfil v-if="editProfil"></EditProfil>
+    <EditProfil v-if="editProfil" :who="seeProfil"></EditProfil>
   </div>
 </template>
 

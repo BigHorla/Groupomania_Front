@@ -6,14 +6,14 @@
     left: 0;
     z-index: 1000;
     background: rgba(0, 0, 0, 0.5);
-    .formBox{
+    .formBox{        
         width: 700px;
         background: white;
         position: relative;
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);
-        padding: 8px;
+        overflow: hidden;
         border-radius: 8px;
         font-family: "Roboto", Helvetica, sans-serif;
         @media screen and (max-width: 520px) {
@@ -24,6 +24,12 @@
             justify-content: space-between;
             align-items: center;
             height: fit-content;
+            padding: 8px;
+            background-image: linear-gradient(41deg, rgba(107, 107, 107, 0.04) 0%, rgba(107, 107, 107, 0.04) 8%,rgba(31, 31, 31, 0.04) 8%, rgba(31, 31, 31, 0.04) 100%),linear-gradient(9deg, rgba(228, 228, 228, 0.04) 0%, rgba(228, 228, 228, 0.04) 62%,rgba(54, 54, 54, 0.04) 62%, rgba(54, 54, 54, 0.04) 100%),linear-gradient(124deg, rgba(18, 18, 18, 0.04) 0%, rgba(18, 18, 18, 0.04) 37%,rgba(233, 233, 233, 0.04) 37%, rgba(233, 233, 233, 0.04) 100%),linear-gradient(253deg, rgba(201, 201, 201, 0.04) 0%, rgba(201, 201, 201, 0.04) 55%,rgba(47, 47, 47, 0.04) 55%, rgba(47, 47, 47, 0.04) 100%),linear-gradient(270deg, rgba(172, 172, 172, 0.04) 0%, rgba(172, 172, 172, 0.04) 33%,rgba(26, 26, 26, 0.04) 33%, rgba(26, 26, 26, 0.04) 100%),linear-gradient(64deg, rgba(11, 11, 11, 0.04) 0%, rgba(11, 11, 11, 0.04) 38%,rgba(87, 87, 87, 0.04) 38%, rgba(87, 87, 87, 0.04) 100%),linear-gradient(347deg, rgba(199, 199, 199, 0.04) 0%, rgba(199, 199, 199, 0.04) 69%,rgba(4, 4, 4, 0.04) 69%, rgba(4, 4, 4, 0.04) 100%),linear-gradient(313deg, rgba(36, 36, 36, 0.04) 0%, rgba(36, 36, 36, 0.04) 20%,rgba(91, 91, 91, 0.04) 20%, rgba(91, 91, 91, 0.04) 100%),linear-gradient(90deg, rgb(10, 17, 72),rgb(35, 148, 228));
+            h1{
+                color: white;
+                margin-left: 8px;
+            }
             .imgContainer{
                 width: 100px;
                 height: 100px;
@@ -59,6 +65,7 @@
     }
 }
 .infos{
+    padding: 8px;
     @media screen and (max-width: 520px) {
         display: flex;
         flex-direction: column;
@@ -66,11 +73,10 @@
     }
     .names{
         display: flex;
-
     }
 }
 input, textarea{
-    width: 100%;
+    width: 99%;
     outline: none;
     border: none;
     background: #F1F1F1;
@@ -132,7 +138,39 @@ textarea{
          rgba(0, 0, 0, 0.3) 0px 6px 8px -6px inset;
     }
 }
+@keyframes vibration{
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-2px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 3px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(2px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(2px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
+.delete{
+    width: fit-content;
+    border-radius: 4px;
+    transition-duration: .3s;
+    &:hover{
+        background: rgba(255, 0, 0, 0.3);
+        animation: vibration 0.3s;
+        animation-iteration-count: infinite;
+    }
+}
+.changePassword{
+    width: fit-content;
+    border-radius: 4px;
+    transition-duration: .3s;
+    &:hover{
+        background: rgba(251, 255, 0, 0.3);
+    }
+}
 input[type=file]{
+    position: absolute;
     height: 0;
     width: 0;
     opacity: 0;

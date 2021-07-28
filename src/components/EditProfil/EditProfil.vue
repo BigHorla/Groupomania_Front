@@ -230,22 +230,10 @@ export default {
           .put("http://localhost:3000/api/auth/picture/" + this.userId, formData)
       }
 
-      let someNews = false;
-
-      //Look for empty fields
-      if (this.lastNameInp == "") {
         this.lastNameInp = this.user.lastName;
-      }else{someNews = true}
-      if (this.firstNameInp == "") {
         this.firstNameInp = this.user.firstName;
-      }else{someNews = true}
-      if (this.jobInp == "") {
         this.jobInp = this.user.job;
-      }else{someNews = true}
-      if (this.bioInp == "") {
         this.bioInp = this.user.bio;
-      }else{someNews = true}
-      
 
         // Data parsing
         let data = {

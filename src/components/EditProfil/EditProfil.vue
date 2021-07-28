@@ -246,7 +246,7 @@ export default {
         this.bioInp = this.user.bio;
       }else{someNews = true}
       
-      if(someNews){
+
         // Data parsing
         let data = {
           UserId: this.userId,
@@ -258,9 +258,10 @@ export default {
   
         //Requesting
         axios
-          .put("http://localhost:3000/api/auth/modify/" +this.userId, data)        
+          .put("http://localhost:3000/api/auth/modify/" +this.userId, data)  
+          .then(() => window.location.reload())      
           .catch(err => console.log(err));
-      }
+
     },
   },
 };

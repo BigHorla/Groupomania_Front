@@ -233,7 +233,7 @@ export default {
         this.lastNameInp = this.user.lastName;
         this.firstNameInp = this.user.firstName;
         this.jobInp = this.user.job;
-        this.bioInp = this.user.bio;
+        this.bioInp = this.user.bio;      
 
         // Data parsing
         let data = {

@@ -20,7 +20,9 @@
               :likes=article.likes
               :img=article.attachment
               :wholike=article.wholike></Publication>
-        <div v-if="!noMoreContent" @click="getContent(true)" class="btn">😃 Voir Plus 😃</div>
+        <div v-if="!noMoreContent" @click="getContent(true)" class="btn">
+          😃 Voir plus de publications 😃
+          </div>
         </div>
     </div>
 </template>

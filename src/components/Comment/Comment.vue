@@ -40,7 +40,7 @@ export default {
     methods: {
         deleteCom : function () {
             if(confirm('Supprimer le commentaire ?')){
-                axios.post("http://localhost:3000/api/comment/delete/"+this.id, { "UserId" : localStorage.getItem('userId')} )
+                axios.delete("http://localhost:3000/api/comment/delete/"+this.id)
                 .then(() => {
                     this.visible = false;                    
                     this.$emit('Updateby', -1)

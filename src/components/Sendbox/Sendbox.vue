@@ -94,10 +94,14 @@ export default {
       this.title = e.target.value;
     },
     inputContent: function (e) {
-      //TODO : Improve with break line sensitivity
+      let breakline = 0;
+
+      breakline = e.target.value.split(`\n`).length - 1
+      console.log(breakline)
+
       e.target.value.length == 0
         ? (this.row = 1)
-        : (this.row = Math.ceil(e.target.value.length / 70));
+        : (this.row = Math.ceil(e.target.value.length / 70)+breakline);
 
       this.content = e.target.value;
     },

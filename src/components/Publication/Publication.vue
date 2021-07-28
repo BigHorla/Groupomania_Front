@@ -120,7 +120,7 @@ export default {
 
         //Requesting
         axios
-          .post("http://localhost:3000/api/article/delete/" + this.articleID, { UserId: localStorage.getItem("userId") })
+          .delete("http://localhost:3000/api/article/delete/" + this.articleID)
           .then(() => (this.visible = false));
       }
     },

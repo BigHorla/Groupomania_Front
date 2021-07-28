@@ -33,9 +33,14 @@ export default {
   methods: {
     inputContent: function (e) {
       //TODO : Improve with break line sensitivity
+      let breakline = 0;
+
+      breakline = e.target.value.split(`\n`).length
+      console.log(breakline)
+
       e.target.value.length == 0
         ? (this.row = 1)
-        : (this.row = Math.ceil(e.target.value.length / 70));
+        : (this.row = Math.ceil(e.target.value.length / 70) + breakline);
 
       this.content = e.target.value;
     },
@@ -52,7 +57,6 @@ export default {
         })
         .then(() => {
           this.content = "";
-          alert("Commentaire envoyé !");
         })
         .then(() => this.$emit("Updateby", 1));
     },

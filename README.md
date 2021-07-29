@@ -1,4 +1,9 @@
-# social
+# socialNetwork Groupomania 
+
+## Back end API
+```
+https://github.com/BigHorla/JulienMeunier_7_07022021-API
+```
 
 ## Project setup
 ```

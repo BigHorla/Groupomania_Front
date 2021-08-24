@@ -1,6 +1,6 @@
 # socialNetwork Groupomania 
 
-## Back end API
+API
 ```
 https://github.com/BigHorla/JulienMeunier_7_07022021-API
 ```

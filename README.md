@@ -2,7 +2,7 @@
 
 API
 ```
-https://github.com/BigHorla/JulienMeunier_7_07022021-API
+https://github.com/BigHorla/Groupomania_API
 ```
 
 ## Project setup
